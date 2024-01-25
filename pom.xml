@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jaroslaw</groupId>
-    <artifactId>CarRentalProject</artifactId>
+    <artifactId>CarRentalProjectSpring</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>CarRentalProject</name>
     <description>CarRentalProject</description>
