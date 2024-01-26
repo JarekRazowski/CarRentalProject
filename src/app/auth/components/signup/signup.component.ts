@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class SignupComponent {
   isSpinning: boolean = false;
   signupForm!: FormGroup;
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private authService: AuthService){}
 
   ngOnInit(){
     this.signupForm = this.fb.group({
@@ -35,5 +36,8 @@ export class SignupComponent {
 
   register(){
     console.log(this.signupForm.value);
+    this.authService.register(this.signupForm.value).subscribe((res)=>{
+      console.log(res);
+    })
   }
 }
