@@ -33,7 +33,7 @@ export class SignupComponent {
     }
     return {};
   }
-
+  
   register(){
     console.log(this.signupForm.value);
     this.authService.register(this.signupForm.value).subscribe((res)=>{
