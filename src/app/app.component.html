@@ -1,4 +1,4 @@
-<div *ngId="!isAdminLoggedIn">
+<div *ngIf="!isAdminLoggedIn && !isCustomerIsLoggedIn">
     <nz-header class="main-header" nz-row nzType="flex" class="custom-navbar">
         <div class="navbar-title">
             <a routerLink="/login">Car rental service</a>
@@ -16,6 +16,7 @@
         </div>
         <div class="nav-links">
             <a nz-button nzType="link" routerLink="/admin/dashboard" routerLinkActive="active">Dasboard</a>
+            <a nz-button nzType="link" routerLink="/admin/car" routerLinkActive="active">Post Car</a>
             <a nz-button nzType="link" (click)="logout()" routerLinkActive="active">Logout</a>
         </div>
     </nz-header>
