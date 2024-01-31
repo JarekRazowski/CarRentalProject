@@ -44,24 +44,27 @@ export class PostCarComponent {
     this.isSpinning = true;
     const formData: FormData = new FormData();
     formData.append('img', this.selectedFile);
-    formData.append('brand', this.postCarForm.get('brand')?.value);
-    formData.append('name', this.postCarForm.get('name')?.value);
-    formData.append('type', this.postCarForm.get('type')?.value);
-    formData.append('color', this.postCarForm.get('color')?.value);
-    formData.append('year', this.postCarForm.get('year')?.value);
-    formData.append('transmission', this.postCarForm.get('transmission')?.value);
-    formData.append('description', this.postCarForm.get('description')?.value);
-    formData.append('price', this.postCarForm.get('price')?.value);
+    formData.append('brand', this.postCarForm.get('brand')!.value);
+    formData.append('name', this.postCarForm.get('name')!.value);
+    formData.append('type', this.postCarForm.get('type')!.value);
+    formData.append('color', this.postCarForm.get('color')!.value);
+    formData.append('year', this.postCarForm.get('year')!.value);
+    formData.append('transmission', this.postCarForm.get('transmission')!.value);
+    formData.append('description', this.postCarForm.get('description')!.value);
+    formData.append('price', this.postCarForm.get('price')!.value);
     console.log(formData);
-    this.adminService.postCar(formData).subscribe((res)=>{
-      this.isSpinning = false;
-      this.message.success("Car posted successfully", {nzDuration: 5000});
-      this.router.navigateByUrl("/admin/dashboard");
-      console.log(res);
-    }, error => {
-      this.message.error("Error while posting car", {nzDuration: 5000})
-    })
-    }
+    this.adminService.postCar(formData).subscribe({
+        next: (res) => {
+          this.isSpinning = false;
+          this.message.success("Car posted successfully", {nzDuration: 5000});
+          this.router.navigateByUrl("/admin/dashboard");
+          console.log(res); 
+        }, 
+        error: () => {
+          this.message.error("Error while posting car", {nzDuration: 5000})
+        }
+      })
+  }
 
   onFileSelected(event: any){
     this.selectedFile = event.target.files[0];
