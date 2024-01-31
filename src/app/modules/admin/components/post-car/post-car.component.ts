@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from '../../services/admin.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-car',
@@ -8,7 +11,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class PostCarComponent {
   
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, 
+    private adminService: AdminService, 
+    private message: NzMessageService, 
+    private router: Router){}
 
   postCarForm!: FormGroup;
   isSpinning: boolean = false;
@@ -27,14 +33,15 @@ export class PostCarComponent {
       type:[null, Validators.required],
       color:[null, Validators.required],
       transmission:[null, Validators.required],
+      year:[null, Validators.required],
       price:[null, Validators.required],
-      description:[null, Validators.required],
-      yaer:[null, Validators.required]
+      description:[null, Validators.required]
     })
   }
 
   postCar(){
     console.log(this.postCarForm.value);
+    this.isSpinning = true;
     const formData: FormData = new FormData();
     formData.append('img', this.selectedFile);
     formData.append('brand', this.postCarForm.get('brand')?.value);
@@ -46,6 +53,14 @@ export class PostCarComponent {
     formData.append('description', this.postCarForm.get('description')?.value);
     formData.append('price', this.postCarForm.get('price')?.value);
     console.log(formData);
+    this.adminService.postCar(formData).subscribe((res)=>{
+      this.isSpinning = false;
+      this.message.success("Car posted successfully", {nzDuration: 5000});
+      this.router.navigateByUrl("/admin/dashboard");
+      console.log(res);
+    }, error => {
+      this.message.error("Error while posting car", {nzDuration: 5000})
+    })
     }
 
   onFileSelected(event: any){
