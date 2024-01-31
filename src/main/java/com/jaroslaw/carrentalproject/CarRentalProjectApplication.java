@@ -7,7 +7,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CarRentalProjectApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CarRentalProjectApplication.class, args);
-    }
-
+        SpringApplication.run(CarRentalProjectApplication.class, args);}
 }
