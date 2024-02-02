@@ -11,7 +11,7 @@ import java.util.Date;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "Id", nullable = false)
     private Long id;
     @Column(name = "Car_brand", nullable = false)
@@ -30,6 +30,6 @@ public class Car {
     private Long price;
     @Column(name = "Car_year", nullable = false)
     private Date year;
-    @Column(columnDefinition = "longblob")
-    private byte[] image;
+    //@Column(columnDefinition = "longblob")
+    //private byte[] image;
 }

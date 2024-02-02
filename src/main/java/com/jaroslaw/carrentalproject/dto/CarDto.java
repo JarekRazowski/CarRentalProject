@@ -18,5 +18,5 @@ public class CarDto {
     private Long price;
     private Date year;
     private MultipartFile image;
-    private byte[] returnedImage;
+    //private byte[] returnedImage;
 }

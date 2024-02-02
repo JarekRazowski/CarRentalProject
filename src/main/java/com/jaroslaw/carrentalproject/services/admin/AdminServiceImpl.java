@@ -12,7 +12,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService{
 
-    private CarRepository carRepository;
+    private final CarRepository carRepository;
 
     @Override
     public boolean postCar(CarDto carDto) throws IOException {
@@ -26,7 +26,7 @@ public class AdminServiceImpl implements AdminService{
             car.setType(carDto.getType());
             car.setDescription(carDto.getDescription());
             car.setTransmission(carDto.getTransmission());
-            car.setImage(carDto.getImage().getBytes());
+            //car.setImage(carDto.getImage().getBytes());
             carRepository.save(car);
             return true;
         }
