@@ -43,7 +43,7 @@ export class PostCarComponent {
     console.log(this.postCarForm.value);
     this.isSpinning = true;
     const formData: FormData = new FormData();
-    formData.append('img', this.selectedFile);
+    //formData.append('img', this.selectedFile);
     formData.append('brand', this.postCarForm.get('brand')!.value);
     formData.append('name', this.postCarForm.get('name')!.value);
     formData.append('type', this.postCarForm.get('type')!.value);
@@ -78,5 +78,4 @@ export class PostCarComponent {
     }
     reader.readAsDataURL(this.selectedFile);
   }
-
 }
